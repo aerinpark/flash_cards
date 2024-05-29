@@ -6,31 +6,39 @@ BACKGROUND_COLOR = "white"
 FONT = "Ariel"
 
 curr_word = {}
+front = True
 
 
 # Flips the card
 def flip_card():
-    global curr_word
-    canvas.itemconfig(canvas_image, image=image_back)
-    canvas.itemconfig(title_tag, text="English", fill="white")
-    canvas.itemconfig(word_tag, text=f"{curr_word['English']}", fill="white")
+    global curr_word, front
+    if front:
+        canvas.itemconfig(canvas_image, image=image_back)
+        canvas.itemconfig(title_tag, text="English", fill="white")
+        canvas.itemconfig(word_tag, text=f"{curr_word['English']}", fill="white")
+        front = False
+    else:
+        canvas.itemconfig(canvas_image, image=image_front)
+        canvas.itemconfig(title_tag, text="French", fill="white")
+        canvas.itemconfig(word_tag, text=f"{curr_word['French']}", fill="white")
+        front = True
+
 
 
 # Move on to the next word in the list
 def next_card():
-    global curr_word, flip_timer
-    window.after_cancel(flip_timer)
+    global curr_word
     curr_word = choice(data)
     word_fr = curr_word["French"]
     canvas.itemconfig(canvas_image, image=image_front)
     canvas.itemconfig(title_tag, text="French", fill="white")
     canvas.itemconfig(word_tag, text=f"{word_fr}", fill="white")
-    flip_timer = window.after(3000, func=flip_card)
 
 
 # Remove the curr_word from the list of words to learn
 def remove_word():
     data.remove(curr_word)
+
 
 # Save all the words in the data into data/words_to_learn.csv
 def save_words():
@@ -42,7 +50,6 @@ def save_words():
 window = Tk()
 window.title("Flash Cards")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
-flip_timer = window.after(3000, flip_card)
 # GUI
 image_right = PhotoImage(file="images/right.png")
 image_wrong = PhotoImage(file="images/wrong.png")
@@ -67,7 +74,7 @@ button_correct = Button(image=image_right, command=lambda: [remove_word(), save_
 button_correct.config(bg=BACKGROUND_COLOR, highlightthickness=0)
 button_correct.grid(row=2, column=2)
 
-button_flip = Button(image=image_flip)
+button_flip = Button(image=image_flip, command=flip_card)
 button_flip.config(highlightthickness=0)
 button_flip.grid(row=0, column=3)
 
