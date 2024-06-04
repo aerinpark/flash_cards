@@ -96,8 +96,8 @@ def next_card():
         canvas.itemconfig(word_tag, text=f"{word}", fill="white")
     else:
         curr_word = {}
-        canvas.itemconfig(title_tag, text="Word", fill="white")
-        canvas.itemconfig(word_tag, text=f"", fill="white")
+        canvas.itemconfig(title_tag, text="", fill="white")
+        canvas.itemconfig(word_tag, text="", fill="white")
 
 
 # Remove the curr_word from the list of words to learn
