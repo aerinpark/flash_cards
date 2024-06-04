@@ -41,7 +41,7 @@ def add_new_word():
     input_popup.title("New word")
     input_popup.config(padx=20, pady=20)
 
-    label = Label(input_popup, text="Enter a new word: ", font=(FONT, 20, "bold"))
+    label = Label(input_popup, text="Enter a new word: ", font=(FONT, 15, "bold"))
     label.grid(row=0, column=0)
 
     tag_word = Label(input_popup, text="Word: ")
