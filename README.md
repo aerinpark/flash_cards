@@ -9,7 +9,7 @@ This simple vocabulary program will help you enhance your vocabulary. You can ad
 ### Getting Started
 
 1. Clone the repository<br>
-   `git clone https://github.com/aerinpark/study_cards.git `
+   `git clone https://github.com/aerinpark/flash_cards.git `
 2. Run the program<br>
    `python3 main.py`
 
