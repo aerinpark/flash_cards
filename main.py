@@ -60,6 +60,7 @@ def add_new_word():
         global original_list
         if entry_def.get() == "" or entry_def.get() == "":
             messagebox.showerror(title="Error", message="Entry box(es) cannot be empty.")
+            add_new_word()
             return
         new_word = {'Word': entry_word.get(),
                     'Definition': entry_def.get()}
